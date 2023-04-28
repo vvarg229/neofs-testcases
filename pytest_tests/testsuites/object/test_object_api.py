@@ -138,7 +138,7 @@ def storage_objects(
 @pytest.mark.grpc_api
 class TestObjectApi(ClusterTestBase):
     @allure.title("Validate object storage policy by native API")
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_object_storage_policies(
         self, request: FixtureRequest, storage_objects: list[StorageObjectInfo], simple_object_size
@@ -171,7 +171,7 @@ class TestObjectApi(ClusterTestBase):
                 assert copies == 2, "Expected 2 copies"
 
     @allure.title("Validate get object native API")
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_get_object_api(
         self, request: FixtureRequest, storage_objects: list[StorageObjectInfo]
@@ -194,7 +194,7 @@ class TestObjectApi(ClusterTestBase):
                 assert storage_object.file_hash == file_hash
 
     @allure.title("Validate head object native API")
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_head_object_api(
         self, request: FixtureRequest, storage_objects: list[StorageObjectInfo]
@@ -225,7 +225,7 @@ class TestObjectApi(ClusterTestBase):
             self.check_header_is_presented(head_info, storage_object_2.attributes)
 
     @allure.title("Validate object search by native API")
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_search_object_api(
         self, request: FixtureRequest, storage_objects: list[StorageObjectInfo]
@@ -276,7 +276,7 @@ class TestObjectApi(ClusterTestBase):
         [pytest.lazy_fixture("simple_object_size"), pytest.lazy_fixture("complex_object_size")],
         ids=["simple object", "complex object"],
     )
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/523")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/523")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_523
     def test_object_search_should_return_tombstone_items(
         self, default_wallet: str, request: FixtureRequest, object_size: int
@@ -348,7 +348,7 @@ class TestObjectApi(ClusterTestBase):
     @allure.title("Validate native object API get_range_hash")
     @pytest.mark.sanity
     @pytest.mark.grpc_api
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_object_get_range_hash(
         self, request: FixtureRequest, storage_objects: list[StorageObjectInfo], max_object_size
@@ -389,7 +389,7 @@ class TestObjectApi(ClusterTestBase):
     @allure.title("Validate native object API get_range")
     @pytest.mark.sanity
     @pytest.mark.grpc_api
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_object_get_range(
         self, request: FixtureRequest, storage_objects: list[StorageObjectInfo], max_object_size
@@ -431,7 +431,7 @@ class TestObjectApi(ClusterTestBase):
     @allure.title("Validate native object API get_range negative cases")
     @pytest.mark.sanity
     @pytest.mark.grpc_api
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_object_get_range_negatives(
         self,
@@ -488,7 +488,7 @@ class TestObjectApi(ClusterTestBase):
                         )
 
     @allure.title("Validate native object API get_range_hash negative cases")
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/519")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_519
     def test_object_get_range_hash_negatives(
         self,

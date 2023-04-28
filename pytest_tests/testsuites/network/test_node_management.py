@@ -46,7 +46,7 @@ check_nodes: list[StorageNode] = []
 @allure.title("Add one node to cluster")
 @pytest.mark.add_nodes
 @pytest.mark.node_mgmt
-@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/542")
+#@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/542")
 @pytest.mark.nspcc_dev__neofs_testcases__issue_542
 class TestNodeManagement(ClusterTestBase):
     @pytest.fixture
@@ -367,7 +367,7 @@ class TestNodeManagement(ClusterTestBase):
                 self.wait_for_obj_dropped(wallet, cid, oid, endpoint, head_object)
 
     @pytest.mark.node_mgmt
-    @pytest.mark.skip(reason="Need to clarify scenario")
+    #@pytest.mark.skip(reason="Need to clarify scenario")
     @allure.title("Control Operations with storage nodes")
     def test_shards(
         self,

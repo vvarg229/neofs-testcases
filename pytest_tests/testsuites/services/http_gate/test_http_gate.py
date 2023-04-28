@@ -34,7 +34,7 @@ OBJECT_NOT_FOUND_ERROR = "not found"
 @allure.link("https://github.com/nspcc-dev/neofs-http-gw#downloading", name="downloading")
 @pytest.mark.sanity
 @pytest.mark.http_gate
-@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/523")
+#@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/523")
 @pytest.mark.nspcc_dev__neofs_testcases__issue_523
 class TestHttpGate(ClusterTestBase):
     PLACEMENT_RULE_1 = "REP 1 IN X CBF 1 SELECT 1 FROM * AS X"
@@ -46,7 +46,7 @@ class TestHttpGate(ClusterTestBase):
         TestHttpGate.wallet = default_wallet
 
     @allure.title("Test Put over gRPC, Get over HTTP")
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/542")
+    #@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/542")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_542
     def test_put_grpc_get_http(self, complex_object_size, simple_object_size):
         """
