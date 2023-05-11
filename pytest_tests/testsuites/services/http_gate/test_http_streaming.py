@@ -57,7 +57,9 @@ class Test_http_streaming(ClusterTestBase):
             "Put objects using curl utility and Get object and verify hashes [ get/$CID/$OID ]"
         ):
             oid = upload_via_http_gate_curl(
-                cid=cid, filepath=file_path, endpoint=self.cluster.default_http_gate_endpoint
+                cid=cid,
+                filepath=file_path,
+                endpoint=self.cluster.default_http_gate_endpoint,
             )
             get_object_and_verify_hashes(
                 oid=oid,

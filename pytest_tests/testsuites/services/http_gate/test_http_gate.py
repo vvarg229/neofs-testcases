@@ -352,12 +352,16 @@ class TestHttpGate(ClusterTestBase):
 
         with allure.step("Put objects using curl utility"):
             oid_simple = upload_via_http_gate_curl(
-                cid=cid, filepath=file_path_simple, endpoint=self.cluster.default_http_gate_endpoint
+                cid=cid,
+                filepath=file_path_simple,
+                endpoint=self.cluster.default_http_gate_endpoint,
+                max_timeout='60',
             )
             oid_large = upload_via_http_gate_curl(
                 cid=cid,
                 filepath=file_path_large,
                 endpoint=self.cluster.default_http_gate_endpoint,
+                max_timeout='300',
             )
 
         for oid, file_path in ((oid_simple, file_path_simple), (oid_large, file_path_large)):

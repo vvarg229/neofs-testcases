@@ -181,6 +181,7 @@ def upload_via_http_gate_curl(
     endpoint: str,
     headers: list = None,
     error_pattern: Optional[str] = None,
+    max_timeout: [str] = 60,
 ) -> str:
     """
     This function upload given object through HTTP gate using curl utility.
@@ -189,6 +190,7 @@ def upload_via_http_gate_curl(
     headers: Object header
     endpoint: http gate endpoint
     error_pattern: [optional] expected error message from the command
+    max_timeout: maximum time in seconds that you allow each curl transfer to take, default 60s
     """
     request = f"{endpoint}/upload/{cid}"
     attributes = ""
@@ -201,13 +203,13 @@ def upload_via_http_gate_curl(
         # pre-clean
         _cmd_run("rm pipe -f")
         files = f"file=@pipe;filename={os.path.basename(filepath)}"
-        cmd = f"mkfifo pipe;cat {filepath} > pipe & curl --no-buffer -F '{files}' {attributes} {request}"
+        cmd = f"mkfifo pipe;cat {filepath} > pipe & curl --no-buffer --max-time {max_timeout} -F '{files}' {attributes} {request}"
         output = _cmd_run(cmd, LONG_TIMEOUT)
         # clean up pipe
         _cmd_run("rm pipe")
     else:
         files = f"file=@{filepath};filename={os.path.basename(filepath)}"
-        cmd = f"curl -F '{files}' {attributes} {request}"
+        cmd = f"curl --max-time {max_timeout} -F '{files}' {attributes} {request}"
         output = _cmd_run(cmd)
 
     if error_pattern:
@@ -222,17 +224,23 @@ def upload_via_http_gate_curl(
 
 
 @allure.step("Get via HTTP Gate using Curl")
-def get_via_http_curl(cid: str, oid: str, endpoint: str) -> str:
+def get_via_http_curl(
+        cid: str,
+        oid: str,
+        endpoint: str,
+        max_timeout: [str] = 60,
+) -> str:
     """
     This function gets given object from HTTP gate using curl utility.
     cid:      CID to get object from
     oid:      object OID
     endpoint: http gate endpoint
+    max_timeout: maximum time in seconds that you allow each curl transfer to take, default 60s
     """
     request = f"{endpoint}/get/{cid}/{oid}"
     file_path = os.path.join(os.getcwd(), ASSETS_DIR, f"{cid}_{oid}_{str(uuid.uuid4())}")
 
-    cmd = f"curl {request} > {file_path}"
+    cmd = f"curl --max-time {max_timeout} {request} > {file_path}"
     _cmd_run(cmd)
 
     return file_path
