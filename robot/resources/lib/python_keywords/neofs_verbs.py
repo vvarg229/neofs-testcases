@@ -177,6 +177,7 @@ def put_object_to_random_node(
     expire_at: Optional[int] = None,
     no_progress: bool = True,
     session: Optional[str] = None,
+    timeout: Optional[str] = None,
 ):
     """
     PUT of given file to a random storage node.
@@ -195,6 +196,7 @@ def put_object_to_random_node(
         expire_at: Last epoch in the life of the object
         xhdr: Request X-Headers in form of Key=Value
         session: path to a JSON-encoded container session token
+        timeout: Timeout for the operation (default 15s)
     Returns:
         ID of uploaded Object
     """
@@ -213,6 +215,7 @@ def put_object_to_random_node(
         expire_at,
         no_progress,
         session,
+        timeout,
     )
 
 
@@ -230,6 +233,7 @@ def put_object(
     expire_at: Optional[int] = None,
     no_progress: bool = True,
     session: Optional[str] = None,
+    timeout: Optional[str] = None,
 ):
     """
     PUT of given file.
@@ -247,6 +251,7 @@ def put_object(
         expire_at: Last epoch in the life of the object
         xhdr: Request X-Headers in form of Key=Value
         session: path to a JSON-encoded container session token
+        timeout: Timeout for the operation (default 15s)
     Returns:
         (str): ID of uploaded Object
     """
@@ -263,6 +268,7 @@ def put_object(
         no_progress=no_progress,
         xhdr=xhdr,
         session=session,
+        timeout=timeout,
     )
 
     # splitting CLI output to lines and taking the penultimate line

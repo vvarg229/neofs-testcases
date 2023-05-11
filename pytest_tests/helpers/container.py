@@ -43,6 +43,7 @@ class StorageContainer:
         expire_at: Optional[int] = None,
         bearer_token: Optional[str] = None,
         endpoint: Optional[str] = None,
+        put_timeout: Optional[str] = None,
     ) -> StorageObjectInfo:
         with allure.step(f"Generate object with size {size}"):
             file_path = generate_file(size)
@@ -62,6 +63,7 @@ class StorageContainer:
                     endpoint=endpoint,
                     bearer=bearer_token,
                     wallet_config=wallet_config,
+                    timeout=put_timeout,
                 )
             else:
                 object_id = put_object_to_random_node(
@@ -73,6 +75,7 @@ class StorageContainer:
                     cluster=self.cluster,
                     bearer=bearer_token,
                     wallet_config=wallet_config,
+                    timeout=put_timeout,
                 )
             with allure.step(f"Store object with size {size} to container {container_id}"):
                 storage_object = StorageObjectInfo(
