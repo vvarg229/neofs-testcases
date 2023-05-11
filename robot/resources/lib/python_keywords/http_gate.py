@@ -181,7 +181,7 @@ def upload_via_http_gate_curl(
     endpoint: str,
     headers: list = None,
     error_pattern: Optional[str] = None,
-    max_timeout: [str] = 60,
+    max_timeout: [str] = 600,
 ) -> str:
     """
     This function upload given object through HTTP gate using curl utility.
@@ -190,7 +190,7 @@ def upload_via_http_gate_curl(
     headers: Object header
     endpoint: http gate endpoint
     error_pattern: [optional] expected error message from the command
-    max_timeout: maximum time in seconds that you allow each curl transfer to take, default 60s
+    max_timeout: maximum time in seconds that you allow each curl transfer to take, default 600s
     """
     request = f"{endpoint}/upload/{cid}"
     attributes = ""
@@ -228,14 +228,14 @@ def get_via_http_curl(
         cid: str,
         oid: str,
         endpoint: str,
-        max_timeout: [str] = 60,
+        max_timeout: [str] = 600,
 ) -> str:
     """
     This function gets given object from HTTP gate using curl utility.
     cid:      CID to get object from
     oid:      object OID
     endpoint: http gate endpoint
-    max_timeout: maximum time in seconds that you allow each curl transfer to take, default 60s
+    max_timeout: maximum time in seconds that you allow each curl transfer to take, default 600s
     """
     request = f"{endpoint}/get/{cid}/{oid}"
     file_path = os.path.join(os.getcwd(), ASSETS_DIR, f"{cid}_{oid}_{str(uuid.uuid4())}")
