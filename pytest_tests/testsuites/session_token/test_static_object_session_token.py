@@ -87,6 +87,7 @@ def storage_objects(
                 cid=storage_containers[0],
                 shell=client_shell,
                 cluster=cluster,
+                timeout=60,
             )
 
             storage_object = StorageObjectInfo(storage_containers[0], storage_object_id)
