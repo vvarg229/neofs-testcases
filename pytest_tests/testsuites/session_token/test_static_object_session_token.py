@@ -160,6 +160,7 @@ class TestObjectStaticSession(ClusterTestBase):
             (get_object, ObjectVerb.GET),
         ],
     )
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_read(
         self,
         user_wallet: WalletFile,
@@ -193,6 +194,7 @@ class TestObjectStaticSession(ClusterTestBase):
         "method_under_test,verb",
         [(get_range, ObjectVerb.RANGE), (get_range_hash, ObjectVerb.RANGEHASH)],
     )
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_range(
         self,
         user_wallet: WalletFile,
