@@ -259,6 +259,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session with object id not in session")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_unrelated_object(
         self,
         user_wallet: WalletFile,
@@ -284,6 +285,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session with user id not in session")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_head_unrelated_user(
         self,
         stranger_wallet: WalletFile,
@@ -311,6 +313,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session with wrong verb in session")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_head_wrong_verb(
         self,
         user_wallet: WalletFile,
@@ -338,6 +341,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session with container id not in session")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_unrelated_container(
         self,
         user_wallet: WalletFile,
@@ -366,6 +370,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session which signed by another wallet")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_signed_by_other(
         self,
         owner_wallet: WalletFile,
@@ -405,6 +410,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session which signed for another container")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_signed_for_other_container(
         self,
         owner_wallet: WalletFile,
@@ -444,6 +450,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session which wasn't signed")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_without_sign(
         self,
         owner_wallet: WalletFile,
@@ -481,6 +488,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session which expires at next epoch")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_expiration_at_next(
         self,
         owner_wallet: WalletFile,
@@ -536,6 +544,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session which is valid starting from next epoch")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_start_at_next(
         self,
         owner_wallet: WalletFile,
@@ -601,6 +610,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session which is already expired")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_already_expired(
         self,
         owner_wallet: WalletFile,
@@ -644,6 +654,7 @@ class TestObjectStaticSession(ClusterTestBase):
             )
 
     @allure.title("Delete verb should be restricted for static session")
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_delete_verb(
         self,
         user_wallet: WalletFile,
@@ -669,6 +680,7 @@ class TestObjectStaticSession(ClusterTestBase):
             )
 
     @allure.title("Put verb should be restricted for static session")
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_put_verb(
         self,
         user_wallet: WalletFile,
@@ -695,6 +707,7 @@ class TestObjectStaticSession(ClusterTestBase):
 
     @allure.title("Validate static session which is issued in future epoch")
     @pytest.mark.static_session
+    @pytest.mark.skip(reason="No space left on device")
     def test_static_session_invalid_issued_epoch(
         self,
         owner_wallet: WalletFile,
