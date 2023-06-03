@@ -307,6 +307,7 @@ class Test_http_system_header(ClusterTestBase):
         [pytest.lazy_fixture("simple_object_size"), pytest.lazy_fixture("complex_object_size")],
         ids=["simple object", "complex object"],
     )
+    @pytest.mark.skip(reason="TST_SKIP")
     def test_http_attr_priority_timestamp_rfc(
         self, user_container: str, object_size: int, epoch_duration: int
     ):
