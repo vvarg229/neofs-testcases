@@ -43,7 +43,6 @@ ENDPOINTS_ATTRIBUTES = {
 
 
 @pytest.mark.load
-@pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/544")
 @pytest.mark.nspcc_dev__neofs_testcases__issue_544
 class TestLoad(ClusterTestBase):
     @pytest.fixture(autouse=True)
@@ -73,7 +72,6 @@ class TestLoad(ClusterTestBase):
     @pytest.mark.parametrize("load_nodes_count", LOAD_NODES_COUNT)
     @pytest.mark.benchmark
     @pytest.mark.grpc
-    @pytest.mark.skip(reason="https://github.com/nspcc-dev/neofs-testcases/issues/544")
     @pytest.mark.nspcc_dev__neofs_testcases__issue_544
     def test_custom_load(
         self,
