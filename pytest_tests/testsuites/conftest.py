@@ -288,7 +288,7 @@ def background_grpc_load(client_shell: Shell, hosting: Hosting):
                 k6_verify_instance.wait_until_finished(BACKGROUND_LOAD_MAX_TIME)
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", autouse=True)
 @allure.title("Prepare wallet and deposit")
 def default_wallet(client_shell: Shell, temp_directory: str, cluster: Cluster):
     wallet_path = os.path.join(os.getcwd(), ASSETS_DIR, f"{str(uuid.uuid4())}.json")
