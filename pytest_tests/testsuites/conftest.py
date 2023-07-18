@@ -133,7 +133,7 @@ def wallet_factory(temp_directory: str, client_shell: Shell, cluster: Cluster) -
     return WalletFactory(temp_directory, client_shell, cluster)
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", autouse=True)
 def cluster(temp_directory: str, hosting: Hosting) -> Cluster:
     cluster = Cluster(hosting)
     if cluster.is_local_devevn():
