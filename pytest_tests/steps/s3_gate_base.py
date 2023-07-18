@@ -67,7 +67,7 @@ class TestS3GateBase(ClusterTestBase):
 
     @pytest.fixture
     @allure.title("Create/delete bucket")
-    def bucket(self):
+    def bucket(self, s3_client):
         bucket = s3_gate_bucket.create_bucket_s3(self.s3_client)
         yield bucket
         self.delete_all_object_in_bucket(bucket)
