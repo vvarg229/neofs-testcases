@@ -74,7 +74,7 @@ class TestS3GateBase(ClusterTestBase):
 
     @pytest.fixture
     @allure.title("Create two buckets")
-    def two_buckets(self):
+    def two_buckets(self, s3_client):
         bucket_1 = s3_gate_bucket.create_bucket_s3(self.s3_client)
         bucket_2 = s3_gate_bucket.create_bucket_s3(self.s3_client)
         yield bucket_1, bucket_2
