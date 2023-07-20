@@ -122,6 +122,11 @@ def put_object_s3(s3_client, bucket: str, filepath: str, **kwargs):
             f'Error Message: {err.response["Error"]["Message"]}\n'
             f'Http status code: {err.response["ResponseMetadata"]["HTTPStatusCode"]}'
         ) from err
+    finally:
+        # TODO: Until the https://github.com/nspcc-dev/neofs-s3-gw/issues/791 is done
+        #  needs to have a wait after the ACL is set.
+        #  The wait should be 2 seconds, because the epoch ticking in test-env is 1 second.
+        sleep(2)
 
 
 @allure.step("Head object S3")
