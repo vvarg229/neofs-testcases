@@ -526,7 +526,7 @@ class AwsCliClient:
         cmd = (
             f"aws {self.common_flags} s3api upload-part --bucket {Bucket} --key {Key} "
             f"--upload-id {UploadId} --part-number {PartNumber} --body {Body} "
-            f"--endpoint-url {self.s3gate_endpoint}"
+            f"--endpoint-url {self.s3gate_endpoint} --debug"
         )
         output = _cmd_run(cmd, LONG_TIMEOUT)
         return self._to_json(output)
