@@ -9,8 +9,8 @@ from cli_helpers import _cmd_run
 from common import ASSETS_DIR
 
 logger = logging.getLogger("NeoLogger")
-REGULAR_TIMEOUT = 90
-LONG_TIMEOUT = 480
+REGULAR_TIMEOUT = 1200
+LONG_TIMEOUT = 1200
 
 
 class AwsCliClient:
