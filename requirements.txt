@@ -8,8 +8,8 @@ asynctest==0.13.0
 attrs==21.4.0
 base58==2.1.0
 black==22.8.0
-boto3==1.16.33
-botocore==1.19.33
+boto3==1.28.8
+botocore==1.31.8
 certifi==2022.12.7
 cffi==1.15.0
 chardet==4.0.0
@@ -17,7 +17,7 @@ charset-normalizer==2.0.12
 coverage==6.3.3
 configobj==5.0.8
 docker==4.4.0
-docutils==0.17.1
+docutils==0.16
 Events==0.4
 flake8==4.0.1
 idna==3.3
@@ -50,7 +50,7 @@ python-dateutil==2.8.2
 pyyaml==6.0
 requests==2.31.0
 robotframework==4.1.2
-s3transfer==0.3.7
+s3transfer==0.6.1
 six==1.16.0
 tenacity==8.0.1
 tomli==2.0.1
@@ -59,3 +59,4 @@ urllib3==1.26.9
 websocket-client==1.3.2
 yarl==1.7.2
 allure-combine==1.0.8
+awscli==1.29.8
