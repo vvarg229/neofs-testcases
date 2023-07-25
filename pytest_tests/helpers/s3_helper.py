@@ -3,6 +3,7 @@ import logging
 import os
 from datetime import datetime, timedelta
 from typing import Optional
+from time import sleep
 
 import allure
 import s3_gate_bucket
@@ -47,7 +48,9 @@ def try_to_get_objects_and_expect_error(s3_client, bucket: str, object_keys: lis
 @allure.step("Set versioning enable for bucket")
 def set_bucket_versioning(s3_client, bucket: str, status: s3_gate_bucket.VersioningStatus):
     s3_gate_bucket.get_bucket_versioning_status(s3_client, bucket)
+    sleep(5)
     s3_gate_bucket.set_bucket_versioning(s3_client, bucket, status=status)
+    sleep(5)
     bucket_status = s3_gate_bucket.get_bucket_versioning_status(s3_client, bucket)
     assert bucket_status == status.value, f"Expected {bucket_status} status. Got {status.value}"
 
