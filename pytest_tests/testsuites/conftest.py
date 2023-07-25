@@ -153,7 +153,7 @@ def check_binary_versions(request, hosting: Hosting, client_shell: Shell):
 
 @pytest.fixture(scope="session")
 @allure.title("Prepare tmp directory")
-def temp_directory() -> str:
+def temp_directory(hosting) -> str:
     with allure.step("Prepare tmp directory"):
         full_path = os.path.join(os.getcwd(), ASSETS_DIR)
         create_dir(full_path)
