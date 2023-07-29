@@ -7,7 +7,7 @@ COMBINE_DIR = 'combine'
 RUN_NUMBER = 'RunNumber'  # the key for the attribute
 FILE_PATH = 'FilePath'  # the key for the attribute, is the path for the static page and allure report zip files
 COMPLETE_FILE_NAME = 'index.html'  # file to write COMBINE_DIR/complete.html file data into
-PUT_TIMEOUT = 600  # in seconds
+PUT_TIMEOUT = 1200  # in seconds
 
 
 def parse_args():
