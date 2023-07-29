@@ -86,6 +86,14 @@ def combine_report(allure_path: str) -> str:
     return combine_dir
 
 
+def print_files_size(directory: str):
+    for path, dirs, files in os.walk(directory):
+        for f in files:
+            fp = os.path.join(path, f)
+            size = os.path.getsize(fp) / (1024 * 1024)
+            print(f'File {fp} size is: {size:.2f} MB')
+
+
 def get_password() -> str:
     password = os.getenv('TEST_RESULTS_PASSWORD')
     return password
@@ -94,6 +102,7 @@ def get_password() -> str:
 if __name__ == '__main__':
     args = parse_args()
     combine_path = combine_report(args.allure_report)
+    print_files_size(combine_path)
     neofs_password = get_password()
 
     put_combine_result_as_static_page(combine_path, args.neofs_domain, args.wallet, args.cid, args.run_id, neofs_password)
