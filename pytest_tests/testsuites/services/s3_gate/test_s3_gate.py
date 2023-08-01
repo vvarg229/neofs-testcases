@@ -249,15 +249,16 @@ class TestS3Gate(TestS3GateBase):
 
     @pytest.mark.s3_gate_multipart
     @allure.title("Test S3 Object Multipart API")
-    def test_s3_api_multipart(self, bucket, simple_object_size):
+    def test_s3_api_multipart(self, bucket, max_object_size):
         """
         Test checks S3 Multipart API (Create multipart upload/Abort multipart upload/List multipart upload/
         Upload part/List parts/Complete multipart upload).
         """
         parts_count = 3
         file_name_large = generate_file(
-            simple_object_size * 1024 * 6 * parts_count
+            max_object_size * parts_count
         )  # 5Mb - min part
+
         object_key = self.object_key_from_file_path(file_name_large)
         part_files = split_file(file_name_large, parts_count)
         parts = []

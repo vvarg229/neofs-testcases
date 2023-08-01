@@ -15,7 +15,6 @@ from common import (
     ASSETS_DIR,
     TEST_FILES_DIR,
     TEST_OBJECTS_DIR,
-    COMPLEX_OBJECT_CHUNKS_COUNT,
     COMPLEX_OBJECT_TAIL_SIZE,
     FREE_STORAGE,
     HOSTING_CONFIG_FILE,
@@ -125,7 +124,7 @@ def simple_object_size(max_object_size: int) -> int:
 
 @pytest.fixture(scope="session")
 def complex_object_size(max_object_size: int) -> int:
-    return max_object_size * int(COMPLEX_OBJECT_CHUNKS_COUNT) + int(COMPLEX_OBJECT_TAIL_SIZE)
+    return max_object_size + int(COMPLEX_OBJECT_TAIL_SIZE)
 
 
 @pytest.fixture(scope="session")

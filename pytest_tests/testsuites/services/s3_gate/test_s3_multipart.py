@@ -6,7 +6,16 @@ from s3_helper import check_objects_in_bucket, object_key_from_file_path, set_bu
 from steps import s3_gate_bucket, s3_gate_object
 from steps.s3_gate_base import TestS3GateBase
 
-PART_SIZE = 5 * 1024 * 1024
+
+def create_large_file(object_size, parts_count: int):
+    """
+    Amazon S3 multipart min upload limits is 5 MiB: https://docs.aws.amazon.com/AmazonS3/latest/userguide/qfacts.html
+    5 MiB = 5,242,880 Bytes
+    In the test-env we use MaxObjectSize 524,288 Bytes
+    So that parts of the large file will be loaded as objects of size 5,767,169 and 5,767,164 Bytes,
+    which is larger than 5,242,880 Bytes
+    """
+    return generate_file(object_size * parts_count * 11)
 
 
 def pytest_generate_tests(metafunc):
@@ -16,13 +25,14 @@ def pytest_generate_tests(metafunc):
 
 @pytest.mark.s3_gate
 @pytest.mark.s3_gate_multipart
+@pytest.mark.s3_gate_multipart_size
 class TestS3GateMultipart(TestS3GateBase):
     @allure.title("Test S3 Object Multipart API")
-    def test_s3_object_multipart(self):
+    def test_s3_object_multipart(self, max_object_size):
         bucket = s3_gate_bucket.create_bucket_s3(self.s3_client)
         set_bucket_versioning(self.s3_client, bucket, s3_gate_bucket.VersioningStatus.ENABLED)
-        parts_count = 5
-        file_name_large = generate_file(PART_SIZE * parts_count)  # 5Mb - min part
+        parts_count = 5  # This small number of object parts is needed in order to test multipart uploading
+        file_name_large = create_large_file(max_object_size, parts_count)
         object_key = object_key_from_file_path(file_name_large)
         part_files = split_file(file_name_large, parts_count)
         parts = []
@@ -62,11 +72,11 @@ class TestS3GateMultipart(TestS3GateBase):
             assert get_file_hash(got_object) == get_file_hash(file_name_large)
 
     @allure.title("Test S3 Multipart abord")
-    def test_s3_abort_multipart(self):
+    def test_s3_abort_multipart(self, max_object_size):
         bucket = s3_gate_bucket.create_bucket_s3(self.s3_client)
         set_bucket_versioning(self.s3_client, bucket, s3_gate_bucket.VersioningStatus.ENABLED)
         parts_count = 5
-        file_name_large = generate_file(PART_SIZE * parts_count)  # 5Mb - min part
+        file_name_large = generate_file(max_object_size * parts_count)
         object_key = object_key_from_file_path(file_name_large)
         part_files = split_file(file_name_large, parts_count)
         parts = []
@@ -89,11 +99,11 @@ class TestS3GateMultipart(TestS3GateBase):
             assert not uploads, f"Expected there is no uploads in bucket {bucket}"
 
     @allure.title("Test S3 Upload Part Copy")
-    def test_s3_multipart_copy(self):
+    def test_s3_multipart_copy(self, max_object_size):
         bucket = s3_gate_bucket.create_bucket_s3(self.s3_client)
         set_bucket_versioning(self.s3_client, bucket, s3_gate_bucket.VersioningStatus.ENABLED)
-        parts_count = 3
-        file_name_large = generate_file(PART_SIZE * parts_count)  # 5Mb - min part
+        parts_count = 3  # This small number of object parts is needed in order to test multipart uploading
+        file_name_large = create_large_file(max_object_size, parts_count)
         object_key = object_key_from_file_path(file_name_large)
         part_files = split_file(file_name_large, parts_count)
         parts = []
