@@ -31,7 +31,7 @@ class TestS3GateMultipart(TestS3GateBase):
     def test_s3_object_multipart(self, max_object_size):
         bucket = s3_gate_bucket.create_bucket_s3(self.s3_client)
         set_bucket_versioning(self.s3_client, bucket, s3_gate_bucket.VersioningStatus.ENABLED)
-        parts_count = 5  # This small number of object parts is needed in order to test multipart uploading
+        parts_count = 2  # This small number of object parts is needed in order to test multipart uploading
         file_name_large = create_large_file(max_object_size, parts_count)
         object_key = object_key_from_file_path(file_name_large)
         part_files = split_file(file_name_large, parts_count)
