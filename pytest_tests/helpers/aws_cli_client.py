@@ -559,7 +559,7 @@ class AwsCliClient:
         logger.info(f"Input file for complete-multipart-upload: {json.dumps(MultipartUpload)}")
 
         cmd = (
-            f"aws {self.common_flags} s3api complete-multipart-upload --bucket {Bucket} "
+            f"aws --debug {self.common_flags} s3api complete-multipart-upload --bucket {Bucket} "
             f"--key {Key}  --upload-id {UploadId} --multipart-upload file://{file_path} "
             f"--endpoint-url {self.s3gate_endpoint}"
         )
